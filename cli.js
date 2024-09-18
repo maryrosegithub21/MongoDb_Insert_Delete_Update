@@ -112,5 +112,26 @@ program
   //   console.log('Auction deleted');
   // });
   });
+
+
+  // Search Data
+program
+  .command('search-auctions <title>')
+  .description('Search for auctions by title')
+  .action(async (title) => {
+    try {
+      const searchCriteria = { title: { $regex: title, $options: 'i' } }; // Case-insensitive search
+      const auctions = await Auction.find(searchCriteria);
+      if (auctions.length > 0) {
+        console.log('Found auctions:', auctions);
+      } else {
+        console.log('No auctions found with the given title.');
+      }
+    } catch (error) {
+      console.error('Error searching for auctions:', error);
+    }
+  });
+
+program.parse(process.argv);
 // This line parses the command-line arguments and executes the appropriate command based on the user's input.
 program.parse(process.argv);
