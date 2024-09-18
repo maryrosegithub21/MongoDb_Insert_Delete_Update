@@ -31,6 +31,7 @@ app.get("/", (req, res) => {
 });
 
 // ========== API START HERE!!! ========== //
+// Route Definitions Asynchronous
 app.get('/api/auctions', async (req, res) => {
   const { search } = req.query;
   const query = search ? { title: new RegExp(search, 'i') } : {};
@@ -40,6 +41,7 @@ app.get('/api/auctions', async (req, res) => {
 // to search API into the browser
 app.get('/api/search', async (req, res) => {
   try {
+    // Extract Query Parameters
     const { title, minPrice, maxPrice } = req.query;
 
     // Build search criteria
