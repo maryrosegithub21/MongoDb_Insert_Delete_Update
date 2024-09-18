@@ -1,5 +1,6 @@
 const cors = require("cors");
 const express = require("express");
+const mongoose = require('mongoose');
 const connectDB = require('./db/db');
 const Auction = require('./models/Auction');
 const app = express();
@@ -36,6 +37,32 @@ app.get('/api/auctions', async (req, res) => {
   const auctions = await Auction.find(query);
   res.json(auctions);
 });
+// to search API into the browser
+app.get('/api/search', async (req, res) => {
+  try {
+    const { title, minPrice, maxPrice } = req.query;
+
+    // Build search criteria
+    const searchCriteria = {};
+    if (title) {
+      searchCriteria.title = { $regex: title, $options: 'i' }; // Case-insensitive search
+    }
+    if (minPrice) {
+      searchCriteria.start_price = { $gte: parseFloat(minPrice) };
+    }
+    if (maxPrice) {
+      searchCriteria.start_price = { ...searchCriteria.start_price, $lte: parseFloat(maxPrice) };
+    }
+
+    // Retrieve matching items from MongoDB
+    const auctions = await Auction.find(searchCriteria);
+    res.json(auctions);
+  } catch (error) {
+    console.error('Error retrieving items:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 // ========== API END HERE ========== //
 
 const PORT = process.env.PORT || 3000;
