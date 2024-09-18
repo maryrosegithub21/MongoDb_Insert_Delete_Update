@@ -92,12 +92,9 @@ For any questions or issues, please open an issue in this repository or contact 
 To create a backup of the MongoDB database, run the following command:
 
 ```sh
-mongodump --uri="mongodb://localhost:27017/TradeMe" --out="C:\\Users\\MaryRoseAntonio\\Desktop\\Mission_5\\L5-mission-five-backend"
+mongodump --uri="<path of mongodb>" --out="<path where project app located>"
 
 Restore
 To restore the MongoDB database from the backup files, run the following command:
 
-mongorestore --uri="mongodb://localhost:27017/TradeMe" 
-
-
-"C:\\Users\\MaryRoseAntonio\\Desktop\\Mission_5\\L5-mission-five-backend\\TradeMe"
+mongorestore --uri="<path of mongodb>" "<path where project app located>"
