@@ -96,3 +96,16 @@ This project is licensed under the MIT License. See the LICENSE file for details
 Contact
 For any questions or issues, please open an issue in this repository or contact the maintainer at [maryroseantoniowork21@gmail.com].
 
+## Backup and Restore
+
+### Backup
+
+To create a backup of the MongoDB database, run the following command:
+
+```sh
+mongodump --uri="mongodb://localhost:27017/TradeMe" --out="C:\\Users\\MaryRoseAntonio\\Desktop\\Mission_5\\L5-mission-five-backend"
+
+Restore
+To restore the MongoDB database from the backup files, run the following command:
+
+mongorestore --uri="mongodb://localhost:27017/TradeMe" "C:\\Users\\MaryRose
