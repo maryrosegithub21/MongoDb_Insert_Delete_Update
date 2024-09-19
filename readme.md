@@ -24,7 +24,7 @@ This project provides a Command Line Interface (CLI) for managing users and auct
     - Create a `.env` file in the root directory.
     - Add your MongoDB connection string:
       ```env
-      MONGODB_URI=mongodb://localhost:27017/TradeMe
+      MONGODB_URI=mongodb://localhost:27017/Database_Name
       ```
 
 ## Usage
